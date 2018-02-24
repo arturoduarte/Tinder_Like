@@ -3,7 +3,9 @@
 		<h1>Histories</h1>
 	</div>
 	<div class="col-xs-4 col-sm-2 col-md-2">
+		<% if user_signed_in? %>
 		<%= link_to 'New History', new_history_path, class: "btn btn-info btn-sm" %>
+		<% end %>
 	</div>
 </div>
 
@@ -17,13 +19,10 @@
 				<small><%= time_ago_in_words(history.created_at) %> ago</small>
 				<p><%= history.content.truncate(150)  %></p>
 				
-				
 				<p><%= link_to 'Show', history, class: "btn btn-primary" %> 
-					
-					
-					<% if user_signed_in? %>
-						<%= link_to 'Edit', edit_history_path(history), class: "btn btn-warning" %> 
-						<%= link_to 'Destroy', history, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></p>
+				<% if user_signed_in? %>		
+					<%= link_to 'Edit', edit_history_path(history), class: "btn btn-warning" %> 
+					<%= link_to 'Destroy', history, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></p>
 					<% end %>
 				</div>
 			</div>
@@ -31,8 +30,6 @@
 		<% end %>
 	</div>
 	
-	
-	<br>
 	
 	
 	
