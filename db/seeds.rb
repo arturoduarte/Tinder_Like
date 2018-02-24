@@ -15,4 +15,4 @@ History.destroy_all
 		content: Faker::Lorem.paragraphs(1),
 		user_id: User.all.ids.sample
 	)
-endgi
+end
