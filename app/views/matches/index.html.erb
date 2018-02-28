@@ -1,0 +1,25 @@
+<h1 class="text-center">Listado de Matches</h1>
+
+<div>
+	
+</div>
+
+<% @matches.each do |variable| %>
+<div class="offset-md-4 card bg-secondary text-center mb-3" style="width: 18rem;">
+	<p>
+		<h4><%= User.find(variable.user_two_id).email  %></h4>
+		
+		<br>
+		<div>
+			<%= image_tag(User.find(variable.user_two_id).picture, :width => 200, :height => 200) if User.find(variable.user_two_id).picture? %>
+		</div>
+		<br>
+		<%= User.find(variable.user_two_id).bio  %>
+		<div>
+			<%= link_to  "Enviar Mensaje", chat_path(user_two: variable.user_two_id), class:'btn btn-success'  %>
+		</div>
+		
+	</p>
+</div>
+<br>
+<% end %>

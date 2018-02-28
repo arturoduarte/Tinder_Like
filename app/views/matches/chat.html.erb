@@ -1,0 +1,28 @@
+<h1 class="text-center">Mensajes</h1>
+<strong> Estas chateando con: </strong>
+<%= @datos.email %>
+<br><br>
+
+
+<label for="">Mensaje:</label>
+
+<%= form_with(model:[@datos, Message.new]) do |f| %>
+<%= f.text_area :message %> <br>
+<%= f.submit :enviar %>
+<% end %>
+
+
+<br><br>
+
+<ul>
+	<h2>Listado de Comentarios</h2>
+	<%# @comments.each do |comment| %>
+	<!-- <li> <%#= comment.content %></li> -->
+	<%# end %>
+</ul>
+
+<br>
+<%#= link_to  "Enviar", messages_create_path(usuario2: @datos), class:'btn btn-success' %>
+
+
+

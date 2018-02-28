@@ -1,0 +1,24 @@
+
+<div class="inline-block no-padding text-center">
+	<%= image_tag(@user.picture, :width => 200, :height => 200) if @user.picture? %>
+	
+	<br><br>
+	<%= @user.email %>
+	<br>
+	
+	<h5 class="text-center">Biografia</h5>
+	<%= @user.bio %>
+	<br>
+	
+	
+	<div class="row">
+		<div class="col-md-6">
+			<%= link_to  "Like", interactions_path(like:true, user_two_id: @user.id), method: :post, class:'btn btn-success' %>
+		</div>
+		
+
+		<div class="col-md-6">
+			<%= link_to  "UnLike", interactions_path(like:false, user_two_id: @user.id), method: :post, class:'btn btn-danger' %>
+		</div>
+	</div>
+</div>

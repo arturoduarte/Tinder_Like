@@ -10,36 +10,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223193106) do
+ActiveRecord::Schema.define(version: 20180228152728) do
 
-  create_table "histories", force: :cascade do |t|
-    t.string "title"
-    t.string "picture"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_histories_on_user_id"
-  end
+	create_table "histories", force: :cascade do |t|
+		t.string "title"
+		t.string "picture"
+		t.text "content"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+		t.integer "user_id"
+		t.index ["user_id"], name: "index_histories_on_user_id"
+	end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "username"
-    t.boolean "admin", default: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
+	create_table "interactions", force: :cascade do |t|
+		t.boolean "like"
+		t.integer "user_one_id"
+		t.integer "user_two_id"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+		t.index ["user_one_id"], name: "index_interactions_on_user_one_id"
+		t.index ["user_two_id"], name: "index_interactions_on_user_two_id"
+	end
+
+	create_table "matches", force: :cascade do |t|
+		t.boolean "like"
+		t.integer "user_one_id"
+		t.integer "user_two_id"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+		t.index ["user_one_id"], name: "index_matches_on_user_one_id"
+		t.index ["user_two_id"], name: "index_matches_on_user_two_id"
+	end
+
+	create_table "messages", force: :cascade do |t|
+		t.text "mensaje_user_one"
+		t.text "mensaje_user_two"
+		t.integer "user_one_id"
+		t.integer "user_two_id"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+		t.index ["user_one_id"], name: "index_messages_on_user_one_id"
+		t.index ["user_two_id"], name: "index_messages_on_user_two_id"
+	end
+
+	create_table "users", force: :cascade do |t|
+		t.string "email", default: "", null: false
+		t.string "encrypted_password", default: "", null: false
+		t.string "reset_password_token"
+		t.datetime "reset_password_sent_at"
+		t.datetime "remember_created_at"
+		t.integer "sign_in_count", default: 0, null: false
+		t.datetime "current_sign_in_at"
+		t.datetime "last_sign_in_at"
+		t.string "current_sign_in_ip"
+		t.string "last_sign_in_ip"
+		t.string "name"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+		t.string "username"
+		t.text "bio"
+		t.string "picture"
+		t.boolean "admin", default: false
+		t.index ["email"], name: "index_users_on_email", unique: true
+		t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+	end
 
 end
