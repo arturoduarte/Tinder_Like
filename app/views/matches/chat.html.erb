@@ -1,4 +1,37 @@
 <h1 class="text-center">Mensajes</h1>
+
+<ul>
+	<h2 class="text-center text-success">Listado de Comentarios</h2> <br>
+	<div class="card border-dark">
+		<% @comments.each do |comment| %>
+		<div class="row">
+			<%if comment.user_two_id == current_user.id %>
+			
+			<div class="col-md-6 col-sm-6">
+				<div class="card bg-secondary" style="height:100px;">
+					<%= comment.updated_at %> <br>
+					<%= comment.mensaje_user_one %>
+					
+				</div>
+			</div>
+			<% elsif comment.user_one_id == current_user.id  %>
+			
+			<div class="col-md-6 offset-md-6  offset-sm-6 col-sm-6">
+				<div class="card bg-dark text-white" style="height:100px;">
+					<%= comment.updated_at %> <br>
+					<%= comment.mensaje_user_one %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+		
+		
+		<br>
+		<% end %>
+	</div>
+</ul>
+
+
 <strong> Estas chateando con: </strong>
 <%= @datos.email %>
 <br><br>
@@ -6,23 +39,12 @@
 
 <label for="">Mensaje:</label>
 
-<%= form_with(model:[@datos, Message.new]) do |f| %>
-<%= f.text_area :message %> <br>
+<%= form_with url: messages_path do |f| %>
+<%= f.text_area :message, style:'width: 800px; height:200px' %> <br>
+<%= hidden_field_tag :id, @datos.id  %>
 <%= f.submit :enviar %>
 <% end %>
 
-
-<br><br>
-
-<ul>
-	<h2>Listado de Comentarios</h2>
-	<%# @comments.each do |comment| %>
-	<!-- <li> <%#= comment.content %></li> -->
-	<%# end %>
-</ul>
-
-<br>
-<%#= link_to  "Enviar", messages_create_path(usuario2: @datos), class:'btn btn-success' %>
 
 
 
